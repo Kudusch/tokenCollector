@@ -4,10 +4,9 @@ DROP TABLE IF EXISTS admins;
 CREATE TABLE tokens (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
-  userid TEXT UNIQUE NOT NULL,
   token TEXT NOT NULL,
   secret TEXT NOT NULL,
-  datetime DATE NOT NULL
+  datetime DATE
 );
 
 CREATE TABLE admin (

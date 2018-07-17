@@ -7,6 +7,10 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from db import get_db
 
+from flask_oauth import OAuth
+
+from flask import redirect
+
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/register', methods=('GET', 'POST'))
@@ -88,3 +92,42 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
+
+oauth = OAuth()
+twitter = oauth.remote_app('twitter',
+    base_url='https://api.twitter.com/1/',
+    request_token_url='https://api.twitter.com/oauth/request_token',
+    access_token_url='https://api.twitter.com/oauth/access_token',
+    authorize_url='https://api.twitter.com/oauth/authenticate',
+    consumer_key='eft8S6trlH7Nzj22WWM8a8uYt',
+    consumer_secret='qZiipC3Btqyv32eZA3XVef1UZnwegQcEwZlkJc3p3cnjbaDIgT'
+)
+@twitter.tokengetter
+def get_twitter_token(token=None):
+    return None
+    
+@bp.route('/oauth')
+def oauth():
+    return twitter.authorize(callback=url_for('auth.oauth_authorized',
+        next=request.args.get('next') or request.referrer or None))
+    
+@bp.route('/oauth-authorized')
+@twitter.authorized_handler
+def oauth_authorized(resp):
+    next_url = request.args.get('next') or url_for('index')
+    if resp is None:
+        flash(u'You denied the request to sign in.')
+        return redirect(next_url)
+    
+    screen_name = resp['screen_name']
+    oauth_token = resp['oauth_token']
+    oauth_token_secret = resp['oauth_token_secret']
+    
+    db = get_db()
+    db.execute(
+        'INSERT INTO tokens (username, token, secret) VALUES (?, ?, ?)', (screen_name, oauth_token, oauth_token_secret)
+    )
+    db.commit()
+
+    flash('You were signed in as %s' % resp['screen_name'])
+    return redirect(url_for('index'))
