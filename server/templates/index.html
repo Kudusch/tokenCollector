@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Index{% endblock %}</h1>
+    <h1>{% block title %}About{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-  <div>
-      <p>
-          Test!
-      </p>
-  </div>
+    <p>
+        Lorem ipsum malesuada turpis suscipit justo nibh fermentum euismod aliquam, pharetra nisi aliquam suspendisse mattis nunc molestie phasellus habitant aenean pellentesque euismod eros nec condimentum, tellus augue molestie metus pharetra vulputate curabitur aliquet, nullam fringilla eros integer senectus orci.
+    </p>
+    <p>
+        Nullam sociosqu non aenean etiam amet felis consectetur sociosqu viverra, sit eu aenean malesuada feugiat ligula tortor erat tempor lectus, posuere consectetur habitant mollis habitant morbi interdum diam et himenaeos sem torquent sociosqu class platea eros rhoncus, condimentum himenaeos suscipit felis mollis at.
+    </p>
+	<a href="{{ url_for('oauth') }}"><button class="twitter">Login Using Twitter</button></a>
 {% endblock %}

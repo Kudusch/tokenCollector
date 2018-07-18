@@ -1,0 +1,41 @@
+html {
+    font-family: monospace;
+    font-size: 12pt;
+}
+
+body {
+    padding-top: 40px;
+}
+
+h1 {
+    margin-bottom: 1em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+.nav {
+    text-align: right;
+}
+
+.twitter {
+	background-color: #1bb2e9;
+	border: none;
+	border-radius: 0px 3px 3px 0px;
+	-moz-border-radius: 0px 3px 3px 0px;
+	-webkit-border-radius: 0px 3px 3px 0px;
+	color: #f4f4f4;
+	cursor: pointer;
+	height: 50px;
+	text-transform: uppercase;
+	width: 250px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+table {
+}
+th {
+    text-align: left;
+}

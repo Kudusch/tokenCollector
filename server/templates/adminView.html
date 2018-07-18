@@ -1,28 +1,41 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Tokens{% endblock %}</h1>
+    <h1>{% block title %}Tokens{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
 <table>
-  {% for token in tokens %}
-    
+    <thead>
         <tr>
-            <td>
-                {{ token['username'] }}
-            </td>
-            <td>
-                {{ token['token'] }}
-            </td>
-            <td>
-                {{ token['secret'] }}
-            </td>
+            <th>
+                username
+            </th>
+            <th>
+                token
+            </th>
+            <th>
+                secret
+            </th>
         </tr>
-    
-    {% if not loop.last %}
-      <hr>
-    {% endif %}
-  {% endfor %}
- </table>
+    </thead>
+    <tbody>
+        {% for token in tokens %}
+            <tr>
+                <td>
+                    {{ token['username'] }}
+                </td>
+                <td>
+                    {{ token['token'] }}
+                </td>
+                <td>
+                    {{ token['secret'] }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p>
+    <a download="tokens.json" href='data:text/plain;charset=utf-8,{{ dl }}'>Download json</a>
+</p>
 {% endblock %}

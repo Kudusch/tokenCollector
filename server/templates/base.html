@@ -1,25 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
 <title>{% block title %}{% endblock %} - tokenCollector</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='rwdgrid.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<nav>
-  <h1>tokenCollector</h1>
-  <ul>
-    {% if g.admin %}
-        <li><a href="{{ url_for('adminView') }}">Admin View</a>
-        <li><a href="{{ url_for('logout') }}">Log Out</a>
-    {% else %}
-        <li><a href="/">Index</a>
-        <li><a href="{{ url_for('login') }}">Log In</a>
-        <li><a href="{{ url_for('oauth') }}">OAuth</a>
-    {% endif %}
-  </ul>
-</nav>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</section>
+</head>
+<body>
+    <div class="container main">
+        <div class="grid-1"></div>
+        <div class="grid-9 content">
+            {% block header %}{% endblock %}
+            
+            {% for message in get_flashed_messages() %}
+              <div class="flash">{{ message }}</div>
+            {% endfor %}
+            
+            {% block content %}{% endblock %}
+        </div>
+        <div class="grid-2 nav">
+            {% if g.admin %}
+                <a href="{{ url_for('index') }}">Index</a><br />
+                <a href="{{ url_for('adminView') }}">Tokens</a><br />
+                <a href="{{ url_for('logout') }}">Log Out</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Admin</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import functools
+import json
 from flask import (
     Flask, Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -22,7 +23,9 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
+        
+    db.init_app(app)
+    
     @app.before_request
     def load_logged_in_user():
         user_id = session.get('user_id')
@@ -45,7 +48,6 @@ def create_app(test_config=None):
     def index():
         return render_template('index.html')
 
-    db.init_app(app)
         
     @app.route('/adminView', methods=('GET', 'POST'))
     @login_required
@@ -55,7 +57,13 @@ def create_app(test_config=None):
             'SELECT username, token, secret'
             ' FROM tokens'
         ).fetchall()
-        return render_template('adminView.html', tokens=tokens)
+        dl = []
+        for token in tokens:
+            #data.append([x for x in row])
+            #dl.append(list(token))
+            dl.append(dict(zip(['username', 'token', 'secret'], token)))
+        dl = json.dumps(dl)
+        return render_template('adminView.html', tokens=tokens, dl=dl)
     
     
     @app.route('/login', methods=('GET', 'POST'))
