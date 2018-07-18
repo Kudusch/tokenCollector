@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Tokens{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<table>
+  {% for token in tokens %}
+    
+        <tr>
+            <td>
+                {{ token['username'] }}
+            </td>
+            <td>
+                {{ token['token'] }}
+            </td>
+            <td>
+                {{ token['secret'] }}
+            </td>
+        </tr>
+    
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+ </table>
+{% endblock %}

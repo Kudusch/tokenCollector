@@ -8,9 +8,3 @@ CREATE TABLE tokens (
   secret TEXT NOT NULL,
   datetime DATE
 );
-
-CREATE TABLE admin (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username INTEGER NOT NULL,
-  password TEXT NOT NULL
-);
