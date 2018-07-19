@@ -1,10 +1,9 @@
 DROP TABLE IF EXISTS tokens;
-DROP TABLE IF EXISTS admins;
 
 CREATE TABLE tokens (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
   token TEXT NOT NULL,
   secret TEXT NOT NULL,
-  datetime DATE
+  ts TEXT
 );

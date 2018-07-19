@@ -2,6 +2,7 @@ import os
 import sqlite3
 import functools
 import json
+import time
 from flask import (
     Flask, Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -54,16 +55,14 @@ def create_app(test_config=None):
     def adminView():
         db = get_db()
         tokens = db.execute(
-            'SELECT username, token, secret'
+            'SELECT username, token, secret, ts'
             ' FROM tokens'
         ).fetchall()
         dl = []
         for token in tokens:
-            #data.append([x for x in row])
-            #dl.append(list(token))
-            dl.append(dict(zip(['username', 'token', 'secret'], token)))
-        dl = json.dumps(dl)
-        return render_template('adminView.html', tokens=tokens, dl=dl)
+            dl.append(dict(zip(['username', 'token', 'secret', 'ts'], token)))
+        #dl = json.dumps(dl)
+        return render_template('adminView.html', tokens=dl, dl=json.dumps(dl))
     
     
     @app.route('/login', methods=('GET', 'POST'))
@@ -79,12 +78,12 @@ def create_app(test_config=None):
                 error = 'Incorrect password.'
 
             if error is None:
-                session.clear()
                 session['user_id'] = app.config["ADMIN_NAME"]
-                return redirect(url_for('index'))
+                return redirect(url_for('adminView'))
 
             flash(error)
-
+        
+        session.clear()
         return render_template('login.html')
 
     @app.route('/logout')
@@ -134,13 +133,14 @@ def create_app(test_config=None):
         db = get_db()
         try:
             db.execute(
-                'INSERT INTO tokens (username, token, secret) VALUES (?, ?, ?)', (screen_name, oauth_token, oauth_token_secret)
+                'INSERT INTO tokens (username, token, secret, ts) VALUES (?, ?, ?, ?)', (screen_name, oauth_token, oauth_token_secret, int(time.time()))
             )
             db.commit()
         except sqlite3.Error as er:
             print 'er:', er.message
-
-        flash('You were signed in as %s' % resp['screen_name'])
+        
+        session['oauth-success'] = screen_name
+        flash('API token for %s were saved! Thank you!' % resp['screen_name'])
         return redirect(url_for('index'))
     
     return app

@@ -5,37 +5,34 @@
 {% endblock %}
 
 {% block content %}
+{% if tokens %}
 <table>
     <thead>
         <tr>
-            <th>
-                username
-            </th>
-            <th>
-                token
-            </th>
-            <th>
-                secret
-            </th>
+            <th>username</th>
+            <th>token</th>
+            <th>secret</th>
         </tr>
     </thead>
     <tbody>
-        {% for token in tokens %}
-            <tr>
-                <td>
-                    {{ token['username'] }}
-                </td>
-                <td>
-                    {{ token['token'] }}
-                </td>
-                <td>
-                    {{ token['secret'] }}
-                </td>
-            </tr>
-        {% endfor %}
+    {% for token in tokens %}
+        <tr>
+            <td>{{ token['username'] }}</td>
+            <td>{{ token['token'] }}</td>
+            <td>{{ token['secret'] }}</td>
+        </tr>
+    {% endfor %}
     </tbody>
 </table>
+{% else %}
+    <p>
+        No data yet!
+    </p>
+{% endif %}
+
+{% if tokens %}
 <p>
     <a download="tokens.json" href='data:text/plain;charset=utf-8,{{ dl }}'>Download json</a>
 </p>
+{% endif %}
 {% endblock %}

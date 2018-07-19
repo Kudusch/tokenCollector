@@ -1,15 +1,9 @@
-- Set up basic templates 
-- Set up database
-- Set up OAuth with twitter
+- [x] Set up basic templates
+- [x] Set up database
+- [x] Set up OAuth with twitter
 
-- Set up paths / improve templates
-  - Admin
-    - Login
-    - View
-    - Export
-  - User
-    - Generate Tokens
+- [ ] Timestamp in database
 
-- Style templates
-- Write documentation
-- Publish and deploy
+- [ ] Style templates
+- [ ] Write documentation
+- [ ] Publish and deploy

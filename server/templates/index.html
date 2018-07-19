@@ -11,5 +11,11 @@
     <p>
         Nullam sociosqu non aenean etiam amet felis consectetur sociosqu viverra, sit eu aenean malesuada feugiat ligula tortor erat tempor lectus, posuere consectetur habitant mollis habitant morbi interdum diam et himenaeos sem torquent sociosqu class platea eros rhoncus, condimentum himenaeos suscipit felis mollis at.
     </p>
-	<a href="{{ url_for('oauth') }}"><button class="twitter">Login Using Twitter</button></a>
+    {% if not session['oauth-success'] %}
+    <a href="{{ url_for('oauth') }}"><button class="twitter">Login Using Twitter</button></a>
+    {% else %}
+    <p>
+        Logged in as {{ session['oauth-success'] }}
+    </p>
+    {% endif %}
 {% endblock %}

@@ -11,12 +11,10 @@
         <div class="grid-1"></div>
         <div class="grid-9 content">
             {% block header %}{% endblock %}
-            
+            {% block content %}{% endblock %}
             {% for message in get_flashed_messages() %}
               <div class="flash">{{ message }}</div>
             {% endfor %}
-            
-            {% block content %}{% endblock %}
         </div>
         <div class="grid-2 nav">
             {% if g.admin %}
