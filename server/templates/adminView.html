@@ -6,24 +6,23 @@
 
 {% block content %}
 {% if tokens %}
-<table>
-    <thead>
-        <tr>
-            <th>username</th>
-            <th>token</th>
-            <th>secret</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="nest tokens">
+    <div class="grid-2 th username"><p>username</p></div>
+    <div class="grid-5 th token"><p>token</p></div>
+    <div class="grid-5 th secret"><p>secret</p></div>
+    <div class="grid-12 pad"></div>
     {% for token in tokens %}
-        <tr>
-            <td>{{ token['username'] }}</td>
-            <td>{{ token['token'] }}</td>
-            <td>{{ token['secret'] }}</td>
-        </tr>
+        <div class="grid-2 td username"><p>{{ token['username'] }}</p></div>
+        <div class="grid-5 td token"><p>{{ token['token'] }}</p></div>
+        <div class="grid-5 td secret"><p>{{ token['secret'] }}</p></div>
+        {% if not loop.last %}
+        <div class='grid-12 pad'></div>
+        {% else %}
+        <div class='grid-12'></div>
+        {% endif %}
     {% endfor %}
-    </tbody>
-</table>
+</div>
+
 {% else %}
     <p>
         No data yet!

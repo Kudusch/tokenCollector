@@ -7,15 +7,22 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container main">
-        <div class="grid-1"></div>
-        <div class="grid-9 content">
-            {% block header %}{% endblock %}
-            {% block content %}{% endblock %}
+    <div class="container" id="header">
+        <div class="grid-3 logo">
+            <!-- Logo -->
+        </div>
+        <div class="grid-6">
             {% for message in get_flashed_messages() %}
-              <div class="flash">{{ message }}</div>
+                <p class="flash">
+                    {{ message }}
+                </p>
             {% endfor %}
         </div>
+        <div class="grid-3 logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" />
+        </div>
+    </div>
+    <div class="container" id="main">
         <div class="grid-2 nav">
             {% if g.admin %}
                 <a href="{{ url_for('index') }}">Index</a><br />
@@ -24,6 +31,23 @@
             {% else %}
                 <a href="{{ url_for('login') }}">Admin</a>
             {% endif %}
+        </div>
+        <div class="grid-8 content">
+            {% block header %}{% endblock %}
+            {% block content %}{% endblock %}
+        </div>
+        <div class="grid-2"></div>
+    </div>
+    <div class="container" id="footer">
+        <div class="grid-6 impressum">
+            <p>
+                <a href="/impressum.html">Impressum</a>
+            </p>
+        </div>
+        <div class="grid-6 kontakt">
+            <p>
+                <a href="/impressum.html">Kontakt</a>
+            </p>
         </div>
     </div>
 </body>

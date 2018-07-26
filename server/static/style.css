@@ -2,9 +2,8 @@ html {
     font-family: monospace;
     font-size: 12pt;
 }
-
-body {
-    padding-top: 40px;
+html, body {
+    height: 100%;
 }
 
 h1 {
@@ -16,7 +15,7 @@ p {
 }
 
 .nav {
-    text-align: right;
+    text-align: left;
 }
 
 .twitter {
@@ -34,8 +33,112 @@ p {
     font-weight: bold;
 }
 
-table {
+.nest {
+    font-size: 0.7em;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
-th {
-    text-align: left;
+
+.nest div {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.th {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.pad {
+    border-bottom: 1px black solid;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.tokens {
+    margin-bottom: 20px;
+}
+
+.username {
+    border-right: 1px black solid;
+}
+
+.token {
+    border-right: 1px black solid;
+}
+
+.secret {
+    /*border-right: 1px black solid;*/
+}
+
+.copy {
+    
+}
+
+.td p, .th p {
+    margin-bottom: 0px;
+}
+
+.twitter-button {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.flash {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    text-align: center;
+    background-color: antiquewhite;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#header div img {
+    width: 100%;
+}
+
+#main {
+    margin: 0 auto;
+}
+
+#footer {
+    width: 100%!important;
+    max-width: none!important;
+    position: absolute;
+    bottom: 0;
+    background-color: #efefef;
+}
+
+#footer p {
+    padding: 10px;
+    margin: 0;
+}
+
+.kontakt {
+    text-align: right;
+}
+
+@media all and (max-height: 575px) {
+    #footer {
+        width: 100%!important;
+        max-width: none!important;
+        background-color: #0A0;
+        bottom: inherit;
+    }
+}
+
+@media all and (max-width: 720px) and (max-height: 850px){
+    #footer {
+        width: 100%!important;
+        max-width: none!important;
+        background-color: #0A0;
+        bottom: inherit;
+    }
+    
+    #footer .grid-6 {
+        text-align: center;
+    }
 }

@@ -49,6 +49,9 @@ def create_app(test_config=None):
     def index():
         return render_template('index.html')
 
+    @app.route('/faq', methods=('GET', 'POST'))
+    def faq():
+        return render_template('faq.html')
         
     @app.route('/adminView', methods=('GET', 'POST'))
     @login_required
