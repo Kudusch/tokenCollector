@@ -3,3 +3,5 @@
 *.pyc
 
 instance/
+
+server/config.py

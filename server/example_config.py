@@ -1,0 +1,7 @@
+# Change to API-tokens
+CONSUMER_KEY='[TWITTER CONSUMER KEY]'
+CONSUMER_SECRET='[TWITTER CONSUMER SECRET]'
+
+# Change to proper username/password
+ADMIN_NAME='admin'
+ADMIN_PW='1234'
