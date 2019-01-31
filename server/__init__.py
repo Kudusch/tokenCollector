@@ -7,10 +7,9 @@ from flask import (
     Flask, Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
-import db
-from db import get_db
-import config
-from flask_oauth import OAuth
+from .db import get_db
+from .config import *
+from .flask_oauth import OAuth
 
 def create_app(test_config=None):
     # create and configure the app
@@ -49,9 +48,9 @@ def create_app(test_config=None):
     def index():
         return render_template('index.html')
 
-    @app.route('/faq', methods=('GET', 'POST'))
+    @app.route('/impressum.html', methods=('GET', 'POST'))
     def faq():
-        return render_template('faq.html')
+        return render_template('impressum.html')
         
     @app.route('/adminView', methods=('GET', 'POST'))
     @login_required
@@ -140,7 +139,7 @@ def create_app(test_config=None):
             )
             db.commit()
         except sqlite3.Error as er:
-            print 'er:', er.message
+            print('er:', er.args)
         
         session['oauth-success'] = screen_name
         flash('API token for %s were saved! Thank you!' % resp['screen_name'])
