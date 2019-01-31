@@ -18,7 +18,11 @@
         {% if not loop.last %}
         <div class='grid-12 pad'></div>
         {% else %}
-        <div class='grid-12'></div>
+        <div class='grid-12'>
+            <p>
+                <a download="tokens.json" href='data:text/plain;charset=utf-8,{{ dl }}'>Download json</a>
+            </p>
+        </div>
         {% endif %}
     {% endfor %}
 </div>
@@ -27,11 +31,5 @@
     <p>
         No data yet!
     </p>
-{% endif %}
-
-{% if tokens %}
-<p>
-    <a download="tokens.json" href='data:text/plain;charset=utf-8,{{ dl }}'>Download json</a>
-</p>
 {% endif %}
 {% endblock %}
