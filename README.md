@@ -34,6 +34,10 @@ You can also deploy it with Apache, mod_wsgi and virtual hosts (see [this tutori
 
 In order to use Twitters OAuth features, you have to [register an application](https://developer.twitter.com/en/apps). The Callback URL of your app should be set to `domain.tld/oauth-authorized` when deployed and `http://127.0.0.1:5000/oauth-authorized` when still in development.
 
+## R
+
+[tokenGenerator.R](tokenGenerator.R) can be used to create [rtweet](https://github.com/mkearney/rtweet/) compatible token-objects.
+
 ## License
 
 This software is released under MIT License (MIT).
