@@ -141,7 +141,12 @@ def oauth_authorized(resp):
         print('er:', er.args)
         
     session['oauth-success'] = screen_name
-    flash('API token for %s were saved! Thank you!' % resp['screen_name'])
+    flash('API token for @%s were saved! Thank you!' % resp['screen_name'])
+    return redirect(url_for('index'))
+
+@app.route('/oauth-logout')
+def oauth_logout():
+    session.clear()
     return redirect(url_for('index'))
     
 if __name__ == "__main__":

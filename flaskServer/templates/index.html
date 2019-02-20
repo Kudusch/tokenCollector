@@ -17,7 +17,8 @@
     </div>
     {% else %}
     <p id="loggedin">
-        You are currently logged in as @{{ session['oauth-success'] }}
+        <p>Hello, @{{ session['oauth-success'] }}, click <a href="{{ url_for('oauth_logout') }}">here to logout</a>.</p>
+        <p>To deauthorize this application with Twitter, visit <a href="https://twitter.com/settings/applications">your Twitter settings</a>.</p>
     </p>
     {% endif %}
 {% endblock %}
