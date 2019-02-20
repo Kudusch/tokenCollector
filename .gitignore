@@ -1,7 +1,6 @@
-flaskserver/venv
 .DS_Store
 *.pyc
 
+flaskServer/venv
 instance/tokenCollector.sqlite
-
-server/config.py
+flaskServer/config.py
