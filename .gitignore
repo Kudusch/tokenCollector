@@ -1,7 +1,7 @@
-.venv
+venv
 .DS_Store
 *.pyc
 
-instance/
+instance/*.sqlite
 
 server/config.py
