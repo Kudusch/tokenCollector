@@ -41,7 +41,7 @@ In order to use Twitters OAuth features, you have to [register an application](h
 ## Helper Scrips
 
 - [token_generator.R](token_generator.R) can be used to create [rtweet](https://github.com/mkearney/rtweet/) compatible token-objects.
-- [check_tokens.R](check_tokens.R) and its function `gen_api_list()` can be used with [Tweepy](https://github.com/tweepy/tweepy/) to generate a list of API-objects to use in multi-token scripts.
+- [check_tokens.py](check_tokens.py) and its function `gen_api_list()` can be used with [Tweepy](https://github.com/tweepy/tweepy/) to generate a list of API-objects to use in multi-token scripts.
 
 ## License
 
